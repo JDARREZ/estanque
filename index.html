@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitoreo y Control IoT 2</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+  
+
+
+</head>
+
+<body>
+
+    <!--BARRA DE NAVEGACIÓN-->
+        <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#general"><b><img src="Pez.png" alt="Pez" height="50" width="50"></b></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" href="#general"><b>General</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#estanque1"><b>Estanque 1</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#estanque2"><b>Estanque 2</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#estanque3"><b>Estanque 3</b></a>
+                        </li>    
+                    </ul>
+                </div>
+            </div>  
+        </nav>
+        <br>
+    <!--/BARRA DE NAVEGACIÓN-->
+    
+    <!--CONTENIDO DENTRO DE CADA PESTAÑA (GENERAL, ESTANQUE1...)-->
+    <div class="tab-content">
+        <div id="general" class="container tab-pane active"><br><br>
+            <!--INFORMACIÓN GENERAL DEL ESTANQUE 1-->
+            <div class="mt-1 p-2 bg-primary text-white rounded">
+                <h3 align="center">Estanque 1</h3>
+            </div>
+            <br>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!--GRAFICO DE OXIGENO DISULETO-->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box " id="box_oxigeno_estanque1">
+                                <span class="info-box-icon elevation-1"><i class="ion-leaf"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Oxígeno Disuelto</span>
+                                    <span class="info-box-number" id="oxigeno_estanque1"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/GRAFICO DE OXIGENO DISULETO-->
+
+                        <!--GRAFICO DE PH-->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box" id="box_ph_estanque1">
+                                <span class="info-box-icon bg-primary elevation-1"><i class="ion-waterdrop"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Ph</span>
+                                    <span class="info-box-number" id="ph_estanque1"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/GRAFICO DE PH-->
+
+                        <!--GRAFICO DE CONDUCTIVIDAD-->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-primary elevation-1"><i class="ion-flash"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Conductividad</span>
+                                    <span class="info-box-number" id="conductividad_estanque1"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/GRAFICO DE CONDUCTIVIDAD-->
+
+                        <!--GRAFICO DE TEMPERATURA-->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-primary elevation-1"><i class="ion-thermometer"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Temperatura</span>
+                                    <span class="info-box-number" id="temperatura_estanque1"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/GRAFICO DE TEMPERATURA-->
+                    </div>
+                    <!--GRAFICO DE LINEAS-->
+                    
+                    <div class="card card-primary">
+                        <div class="card-header">
+                          <h3 class="card-title"><b>Historial</b></h3>
+          
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                              <i class="fas fa-minus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="chart">
+                            <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                <center>
+                                <label for="fecha-inicio">Fecha de inicio:</label>
+                                <input type="date" id="fecha-inicio" />
+                                <div>
+                                <label for="fecha-final">Fecha final:</label>
+                                <input type="date" id="fecha-final" />
+                                </div>
+                                <div>
+                                    <button onclick="filtrarDatos()">Filtrar</button>                                
+                                </div>
+                                </center>
+                                <script>                                   
+                      
+                                    var dataCSV;
+                                    var myChart;
+
+                                    Papa.parse("datos2.csv", {
+                                        download: true,
+                                        header: true,
+                                        complete: function(results) {
+                                        dataCSV= results.data;
+                                        crearGrafico(dataCSV);
+                                        }
+                                    });
+
+                                    function crearGrafico(data) {
+                                        var ctx = document.getElementById("myChart").getContext("2d");
+                                        myChart = new Chart(ctx, {
+                                        type: "line",
+                                        data: {
+                                            labels: data.map(d => d.tiempo),
+                                            datasets: [
+                                            {
+                                                label: "Temperatura",
+                                                data: data.map(d => d.temperatura),
+                                                fill: false,
+                                                borderColor: "rgb(75, 192, 192)",
+                                                tension: 0.1
+                                            },
+                                            {
+                                                label: "Oxígeno",
+                                                data: data.map(d => d.oxigeno),
+                                                fill: false,
+                                                borderColor: "rgb(192, 75, 192)",
+                                                tension: 0.1
+                                            },
+                                            {
+                                                label: "ph",
+                                                data: data.map(d => d.ph),
+                                                fill: false,
+                                                borderColor: "rgb(192, 192, 75)",
+                                                tension: 0.1
+                                            }
+                                            ]
+                                        },
+                                        options: {
+                                            responsive: true,
+                                            scales: {
+                                            x: {
+                                                type: 'time',
+                                                time: {
+                                                    unit: 'day'
+                                                }    
+                                            },
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                            }
+                                        }
+                                        });          
+                                    }
+
+                                    function filtrarDatos() {
+                                        var fechaInicio = document.getElementById("fecha-inicio").value;
+                                        var fechaFinal = document.getElementById("fecha-final").value;
+
+                                        var datosFiltrados = dataCSV.filter(d => d.tiempo >= fechaInicio && d.tiempo <= fechaFinal);
+                                        myChart.data.labels = datosFiltrados.map(d => d.tiempo);
+                                        myChart.data.datasets[0].data = datosFiltrados.map(d => d.temperatura);
+                                        myChart.data.datasets[1].data = datosFiltrados.map(d => d.oxigeno);
+                                        myChart.data.datasets[2].data = datosFiltrados.map(d => d.ph);
+                                        myChart.update();
+                                    }
+                      
+                                    //<!--TOMAR LE ULTIMO VALOR Y AGREGARLO AL INFO-BOX-->
+                                        // Identificar el índice de la columna que deseas extraer
+                                            const index_oxigeno_estanque1 = 4;
+                                            const index_ph_estanque1 = 5;
+                                            const index_conductividad_estanque1 = 3;
+                                            const index_temperatura_estanque1 = 2;
+                                        // Leer el archivo CSV
+                                            fetch('datos2.csv')
+                                            .then(response => response.text())
+                                            .then(data => {
+                                                // Dividir el archivo en líneas y extraer la última línea
+                                                const lines = data.trim().split('\n');
+                                                const lastLine = lines[lines.length - 1];
+
+                                                // Dividir la última línea en columnas y extraer el último valor
+                                                const values = lastLine.split(',');
+                                                const valor_oxigeno_estanque1 = values[index_oxigeno_estanque1];
+                                                const valor_ph_estanque1 = values[index_ph_estanque1];
+                                                const valor_conductividad_estanque1 = values[index_conductividad_estanque1];
+                                                const valor_temperatura_estanque1 = values[index_temperatura_estanque1];
+
+                                                // Actualizar el contenido del elemento HTML con el último valor
+                                                document.getElementById('oxigeno_estanque1').textContent = valor_oxigeno_estanque1;
+                                                document.getElementById('ph_estanque1').textContent = valor_ph_estanque1;
+                                                document.getElementById('conductividad_estanque1').textContent = valor_conductividad_estanque1;
+                                                document.getElementById('temperatura_estanque1').textContent = valor_temperatura_estanque1;
+
+
+                                                //<!--CAMBIO DE COLOR DE LOS INFO-BOX-->
+                                                    var infoBoxes = document.querySelectorAll('.info-box');
+
+                                                        // Recorrer todos los elementos y buscar el que tiene el texto "Messages"
+                                                        for (var i = 0; i < infoBoxes.length; i++) {
+                                                            var infoBox = infoBoxes[i];
+                                                            var infoBoxText = infoBox.querySelector('.info-box-text');
+
+                                                            var infoBox = document.getElementById("box_oxigeno_estanque1");
+                                                            var infoBoxNumber = infoBox.querySelector(".info-box-number").innerText;
+                                                            var infoBoxNumberInt = parseInt(infoBoxNumber.replace(/,/g, ""));
+                                                            var infoBoxIcon = infoBox.querySelector('.info-box-icon')
+                                                            if (valor_oxigeno_estanque1 > 10) {
+                                                                infoBoxIcon.classList.add("bg-success");
+                                                            }
+                                                        }
+
+                                                        // Recorrer todos los elementos y buscar el que tiene el texto "Messages"
+                                                        for (var i = 0; i < infoBoxes.length; i++) {
+                                                            var infoBox = infoBoxes[i];
+                                                            var infoBoxText = infoBox.querySelector('.info-box-text');
+
+                                                            var infoBox = document.getElementById("box_ph_estanque1");
+                                                            var infoBoxNumber = infoBox.querySelector(".info-box-number").innerText;
+                                                            var infoBoxNumberInt = parseInt(infoBoxNumber.replace(/,/g, ""));
+                                                            var infoBoxIcon = infoBox.querySelector('.info-box-icon')
+                                                            if (valor_ph_estanque1 < 10) {
+                                                                infoBoxIcon.classList.add("bg-red");
+                                                            }
+                                                        }
+                                                        
+                                                //<!--/CAMBIO DE COLOR DE LOS INFO-BOX-->
+                                                    
+                                            });
+                                        //<!--/TOMAR LE ULTIMO VALOR Y AGREGARLO AL INFO-BOX-->
+
+
+
+                                </script>
+                          </div>
+                        </div>                    
+                      
+                    <!--/GRAFICO DE LINEAS-->
+                </div>
+            </section>
+            <!--/INFORMACIÓN GENERAL DEL ESTANQUE 1-->
+        </div>
+    </div>
+    <br>
+    <!--/CONTENIDO DENTRO DE CADA PESTAÑA (GENERAL, ESTANQUE1...)-->
+    
+        
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+</body>
+</html>
